@@ -1,0 +1,2 @@
+<?php
+echo password_hash("jczx2041345*", PASSWORD_DEFAULT);

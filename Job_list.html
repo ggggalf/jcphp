@@ -1,0 +1,58 @@
+<?php
+header("Content-Type:text/html;charset=utf-8");
+require_once 'jcnews.php';
+
+$conn = mysqli_connect($db_host,$db_user,$db_pass,$db_name);
+if(!$conn){
+    die("数据库连接失败");
+}
+mysqli_set_charset($conn,"utf8mb4");
+
+$sql = "SELECT id,project_name,notice_type,bid_no,bid_address,phone,sign_time,create_at FROM bid_info ORDER BY sign_time DESC";
+$result = mysqli_query($conn,$sql);
+
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+?>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>招标公告｜金策工程管理有限公司</title>
+<meta name="description" content="金策工程管理有限公司提供工程造价咨询、工程监理、全过程工程咨询服务。">
+<meta name="keywords" content="工程造价,工程监理,全过程工程咨询,招标代理">
+<link rel="stylesheet" href="css/swiper.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<style>
+.list-wrap{max-width:1000px;margin:30px auto;padding:0 15px;}
+.item{padding:16px;border-bottom:1px solid #eee;}
+.item a{font-size:17px;color:#0b2b4c;font-weight:bold;}
+.item-info{font-size:14px;color:#666;margin-top:6px;}
+</style>
+</head>
+<body>
+<!--这里复制你网站原有头部导航代码（和其他页面保持一致）-->
+<div class="top">
+<div class="container">
+<span>欢迎访问金策工程管理有限公司</span>
+</div>
+</div>
+<div class="list-wrap">
+<h2>招标公告</h2>
+<?php if(mysqli_num_rows($result)>0){
+    while($row=mysqli_fetch_assoc($result)){ ?>
+<div class="item">
+<a href="bid_detail.php?id=<?php echo (int)$row['id'];?>"><?php echo htmlspecialchars($row['project_name']);?></a>
+<div class="item-info">
+编号：<?php echo htmlspecialchars($row['bid_no']);?>
+&nbsp;&nbsp;类别：<?php echo htmlspecialchars($row['notice_type']);?>
+&nbsp;&nbsp;报名时间：<?php echo htmlspecialchars($row['sign_time']);?>
+</div>
+</div>
+<?php } }else{ echo "<p>暂无公告数据</p>"; } ?>
+</div>
+</body>
+</html>
+<?php mysqli_close($conn); ?>

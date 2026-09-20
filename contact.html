@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>联系我们｜金策工程管理有限公司</title>
+		<meta name="description" content="金策工程管理有限公司提供工程造价咨询、工程监理、全过程工程咨询服务。">
+		<meta name="keywords" content="工程造价,工程监理,全过程工程咨询,招标代理">
+		<link rel="stylesheet" href="css/swiper.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/responsive.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<style>
+.dropdown-wrap {
+    position: relative;
+    /* 保持和导航其他项一致，flex子元素 */
+}
+.dropdown-title {
+    padding:27px 0;
+    position:relative;
+    /* 重点：宽度仅包裹文字，不要拉伸 */
+    display: inline-block;
+}
+.dropdown-menu {
+    position: absolute;
+    /* 左对齐文字起始位置 */
+    left: 0;
+    /* 紧贴文字底部，抵消上方27px上下padding带来的高度偏移 */
+    top: 100%;
+    margin-top:-10px;
+    background: #ffffff;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.12);
+    min-width:130px;
+    display: none;
+    z-index:999;
+}
+.dropdown-menu a {
+    display:block;
+    padding:12px 16px;
+    color:#273746;
+    white-space:nowrap;
+}
+.dropdown-menu a:hover {
+    color:var(--b);
+}
+.dropdown-wrap:hover .dropdown-menu {
+    display:block;
+}
+/*移动端适配，小屏幕汉堡菜单展开时*/
+@media (max-width:768px){
+    .dropdown-menu{
+        position:relative;
+        box-shadow:none;
+        top:auto;
+        margin-top:0;
+    }
+}
+</style>
+
+	</head>
+	<body>
+	    <?php
+session_start();
+if(!empty($_SESSION['msg'])){
+    $tip = htmlspecialchars($_SESSION['msg']);
+    unset($_SESSION['msg']);
+}else{
+    $tip = '';
+}
+?>
+<script>
+<?php if($tip): ?>
+alert('<?php echo $tip; ?>');
+<?php endif; ?>
+</script>
+
+		<div class="top">
+			<div class="container">
+				<span>欢迎访问金策工程管理有限公司</span>
+				<span>咨询热线：0355-2256011，0355-2256033</span>
+			</div>
+		</div>
+		<header class="header">
+			<div class="container head">
+				<a class="logo" href="index.html">
+					<img src="images/1.png">
+				</a>
+				<span class="menu">☰</span>
+				<nav class="nav">
+    <a class="" href="index.html">首页</a>
+    <a class="" href="about.html">公司概况</a>
+    <a class="" href="service.html">企业资质</a>
+    <a class="" href="cases.html">经典案例</a>
+    <div class="dropdown-wrap">
+        <a href="javascript:;" class="dropdown-title">招投标公告</a>
+        <div class="dropdown-menu">
+            <a href="bid_list.php">招标公告</a>
+            <a href="bida_list.php">中标公告</a>
+        </div>
+    </div>
+    <a class="" href="contact.html">联系我们</a>
+</nav>
+			</div>
+		</header>
+	<div class="container" style="
+    background-image: url('images/3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 20px;
+    position: relative;
+">
+    <!-- 半透明遮罩 -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 35, 70, 0.45);
+    "></div>
+    <h1 style="
+        position: relative;
+        z-index: 2;
+        color: #ffffff;
+        font-size: 32px;
+        margin: 0 0 10px 0;
+    ">联系我们</h1>
+    <div class="crumb" style="
+        position: relative;
+        z-index: 2;
+        color: #ffffff;
+        font-size: 16px;
+        opacity: 0.9;
+    "><a href="index.html">首页</a>　/　<a href="contact.html">联系我们 </a> </div>
+</div>
+		<section class="section">
+			<div class="container">
+				<div class="title">
+					<small>Contact</small>
+					<h2>联系我们</h2>
+				</div>
+				<div class="contact">
+					<div class="contact-info">
+						<h3>联系信息</h3>
+						<div class="contact-row">
+							<b>咨询热线</b>
+							<br>0355-2256011
+							<br>0355-2256033
+						</div>
+						<div class="contact-row">
+							<b>电子邮箱</b>
+							<br>jczb@163.com
+						</div>
+						<div class="contact-row">
+							<b>公司地址</b>
+							<br>山西长治市紫金东街293号帝景苑七单元1002
+						</div>
+					</div>
+					<!-- 修改后的表单，对接write.php -->
+					<form class="form contact-form" action="write.php" method="post">
+						<input required name="username" placeholder="您的姓名">
+						<input required name="phone" placeholder="联系电话">
+						<select name="type">
+							<option>请选择咨询类型</option>
+							<option>工程造价咨询</option>
+							<option>工程监理</option>
+							<option>全过程工程咨询</option>
+						</select>
+						<textarea name="demand" placeholder="请填写项目需求"></textarea>
+						<button class="btn" type="submit">提交咨询</button>
+					</form>
+				</div>
+			</div>
+		</section>
+		<footer class="footer">
+			<div class="container footer-grid">
+				<div>
+					<h3>金策工程管理有限公司</h3>
+					<p>专注工程造价咨询、工程监理与全过程工程咨询。</p>
+				</div>
+				<div>
+					<h3>快速导航</h3>
+					<p>
+						<a href="about.html">公司概况</a><br>
+						<a href="service.html">企业资质</a><br>
+						<a href="cases.html">经典案例</a>
+					</p>
+				</div>
+				<div>
+					<h3>联系我们</h3>
+					<p>0355-2256011
+						<br>0355-2256033
+						<br>jczb@163.com
+						<br>山西长治市紫金东街293号帝景苑七单元1002
+					</p>
+				</div>
+			</div>
+			<div class="container copy">© 2026 金策工程管理有限公司</div>
+		</footer>
+		<button class="back">↑</button>
+		<script src="js/jquery.min.js">
+		</script>
+		<script src="js/swiper.min.js">
+		</script>
+		<!--<script src="js/main.js">
+		</script>-->
+	</body>
+</html>

@@ -1,0 +1,391 @@
+:root {
+    --b: #0b2b4c;
+    --g: #d6a84f;
+    --bg: #f5f7fa;
+    --m: #71808e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+    color: #273746;
+    line-height: 1.8;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1200px, 92%);
+    margin: auto;
+}
+
+/* 顶部条 */
+.top {
+    height: 38px;
+    background: #08233d;
+    color: #cbd7e0;
+    font-size: 13px;
+}
+.top .container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 头部导航 sticky吸顶 */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fff;
+    box-shadow: 0 2px 14px #00000012;
+}
+.head {
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img {
+    width: 720px;
+    max-width: 100%;
+}
+
+.nav {
+    display: flex;
+    gap: 32px;
+}
+.nav a {
+    padding: 27px 0;
+    position: relative;
+}
+.nav a.active,
+.nav a:hover {
+    color: var(--b);
+}
+.nav a.active:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 17px;
+    height: 2px;
+    background: var(--g);
+}
+
+.menu {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* 轮播大图 */
+.slide {
+    height: 520px;
+    background: center/cover;
+    display: flex;
+    align-items: center;
+}
+.hero h1 {
+    color: #fff;
+    font-size: 48px;
+    margin: 0;
+}
+.hero p {
+    color: #fff;
+    font-size: 22px;
+    margin: 10px 0 28px;
+}
+.btn {
+    display: inline-block;
+    background: var(--g);
+    color: #102a43;
+    padding: 10px 28px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+/* 通用区块 */
+.section {
+    padding: 78px 0;
+}
+.gray {
+    background: var(--bg);
+}
+.title {
+    text-align: center;
+    margin-bottom: 44px;
+}
+.title small {
+    color: var(--g);
+    letter-spacing: 3px;
+}
+.title h2 {
+    color: var(--b);
+    font-size: 32px;
+    margin: 5px 0;
+}
+.title p {
+    color: var(--m);
+    margin: 0;
+}
+
+/* 关于我们两栏布局 */
+.about,
+.contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+    align-items: center;
+}
+.about img {
+    width: 100%;
+}
+.about h3 {
+    font-size: 28px;
+    color: var(--b);
+}
+.about p {
+    color: var(--m);
+}
+
+/* 统计数字4栏 */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+}
+.stat {
+    text-align: center;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid #e6edf1;
+}
+.stat strong {
+    display: block;
+    color: var(--b);
+    font-size: 29px;
+}
+
+/* 三栏卡片 */
+.grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.card {
+    background: #fff;
+    border: 1px solid #e6edf1;
+    overflow: hidden;
+}
+.card-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+.card-body {
+    padding: 21px;
+}
+.card h3 {
+    color: var(--b);
+    margin: 0 0 8px;
+}
+.card p {
+    color: var(--m);
+    font-size: 14px;
+    margin: 0;
+}
+
+.service {
+    text-align: center;
+    padding: 34px 22px;
+}
+.ico {
+    width: 68px;
+    height: 68px;
+    margin: auto;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #edf5fa;
+    color: var(--b);
+    font-weight: bold;
+}
+
+/* 新闻列表 */
+news-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+.news-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #e2e8ec;
+}
+.news-date {
+    font-size: 13px;
+    color: var(--g);
+}
+
+/* 内页Banner */
+.page-banner {
+    height: 250px;
+    background: url("../images/banner1.svg") center/cover;
+    display: flex;
+    align-items: center;
+}
+.page-banner h1 {
+    color: #fff;
+    font-size: 40px;
+}
+.crumb {
+    color: #dce8f0;
+}
+
+.content {
+    max-width: 920px;
+    margin: auto;
+}
+.content h2 {
+    color: var(--b);
+}
+.content p {
+    color: #61717e;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.feature {
+    background: var(--bg);
+    padding: 23px;
+    border-left: 3px solid var(--g);
+}
+
+/* 联系我们 */
+.contact-info {
+    background: var(--bg);
+    padding: 34px;
+}
+.contact-row {
+    padding: 12px 0;
+    border-bottom: 1px solid #dce4e9;
+}
+
+.form {
+    display: grid;
+    gap: 14px;
+}
+.form input,
+.form select,
+.form textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d8e1e7;
+    font: inherit;
+}
+.form textarea {
+    min-height: 145px;
+}
+
+/* 页脚 */
+.footer {
+    background: #08233d;
+    color: #b8c7d2;
+    padding: 48px 0 18px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 45px;
+}
+.footer h3 {
+    color: #fff;
+}
+.copy {
+    text-align: center;
+    border-top: 1px solid #ffffff1c;
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 13px;
+}
+
+.back {
+    display: none;
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--g);
+    z-index: 9;
+}
+
+/* ========== 移动端响应式 768px ========== */
+@media (max-width: 768px) {
+    .head {
+        height: auto;
+        padding:12px 0;
+    }
+    .nav {
+        display: none;
+    }
+    .menu {
+        display: block;
+    }
+    .logo img {
+        width: 180px;
+    }
+    .slide {
+        height: 300px;
+    }
+    .hero h1 {
+        font-size:28px;
+    }
+    .hero p {
+        font-size:16px;
+    }
+    .about,
+    .contact {
+        grid-template-columns:1fr;
+    }
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+    .grid3,
+    .news-list,
+    .features {
+        grid-template-columns:1fr;
+    }
+    .footer-grid {
+        grid-template-columns:1fr;
+        gap:24px;
+    }
+    .section {
+        padding:40px 0;
+    }
+    .title h2 {
+        font-size:24px;
+    }
+    .page-banner {
+        height:160px;
+    }
+    .page-banner h1 {
+        font-size:26px;
+    }
+}

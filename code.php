@@ -1,0 +1,25 @@
+<?php
+session_start();
+header("Content-type:image/png");
+$w=120;
+$h=42;
+$im=imagecreate($w,$h);
+$bg=imagecolorallocate($im,245,247,250);
+$textcolor=imagecolorallocate($im,11,43,76);
+$linecolor=imagecolorallocate($im,200,200,200);
+$chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+$code='';
+for($i=0;$i<4;$i++){
+    $code.=$chars[rand(0,strlen($chars)-1)];
+}
+$_SESSION['verify_code']=$code;
+for($i=0;$i<4;$i++){
+    imagechar($im,5,10+$i*25,8,$code[$i],$textcolor);
+}
+//干扰线
+for($i=0;$i<4;$i++){
+    imageline($im,rand(0,$w),rand(0,$h),rand(0,$w),rand(0,$h),$linecolor);
+}
+imagepng($im);
+imagedestroy($im);
+?>

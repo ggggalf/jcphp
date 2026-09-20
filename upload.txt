@@ -1,0 +1,67 @@
+<?php
+header("Content-Type:application/json;charset=utf-8");
+session_start();
+// 校验管理员登录，非管理员禁止上传
+if (!isset($_SESSION['bid_admin_logged']) || !$_SESSION['bid_admin_logged']) {
+    echo json_encode(["errno"=>1,"message"=>"无上传权限，请登录后台"]);
+    exit;
+}
+
+$allow_ext = ['jpg','jpeg','png','gif'];
+$max_size = 5 * 1024 * 1024; //限制最大5MB
+
+if(!isset($_FILES['file'])){
+	echo json_encode(["errno"=>1,"message"=>"未接收到上传文件"]);
+	exit;
+}
+$file = $_FILES['file'];
+
+//校验上传错误
+if($file['error'] !== UPLOAD_ERR_OK){
+    echo json_encode(["errno"=>1,"message"=>"文件上传错误"]);
+    exit;
+}
+
+//限制文件大小
+if($file['size'] > $max_size || $file['size'] <=0){
+	echo json_encode(["errno"=>1,"message"=>"文件大小不能超过5MB"]);
+	exit;
+}
+
+$ext = strtolower(pathinfo($file['name'],PATHINFO_EXTENSION));
+//黑名单
+if(in_array($ext,['php','php5','phtml','php7','asp','jsp','htaccess'])){
+	echo json_encode(["errno"=>1,"message"=>"禁止上传脚本文件"]);
+	exit;
+}
+//白名单后缀
+if(!in_array($ext,$allow_ext)){
+	echo json_encode(["errno"=>1,"message"=>"仅允许 jpg/png/gif 图片"]);
+	exit;
+}
+
+//校验文件内容，获取图片宽高，确认真的是图片
+$imgInfo = getimagesize($file['tmp_name']);
+if(!$imgInfo){
+    echo json_encode(["errno"=>1,"message"=>"不是合法图片文件"]);
+    exit;
+}
+
+$save_dir = "upload/img/";
+if(!is_dir($save_dir)){
+	mkdir($save_dir,0755,true);
+}
+$filename = date("YmdHis")."_".rand(1000,9999).".".$ext;
+$fullPath = $save_dir.$filename;
+
+if(!move_uploaded_file($file['tmp_name'],$fullPath)){
+    echo json_encode(["errno"=>1,"message"=>"文件保存失败，检查目录权限"]);
+    exit;
+}
+
+$url = "/".$save_dir.$filename;
+echo json_encode([
+	"errno"=>0,
+	"data"=>[["url"=>$url,"alt"=>"","href"=>""]]
+]);
+?>
